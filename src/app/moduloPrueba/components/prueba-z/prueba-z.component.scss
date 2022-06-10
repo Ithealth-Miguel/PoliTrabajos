@@ -1,0 +1,13 @@
+input{
+    padding: 5px;
+    border-radius: 5px ;
+    outline: none;
+    border: 1px solid #ccc;
+}
+input:focus{
+    outline: 1px solid rgb(47, 37, 192);
+}
+
+label{
+    padding-top:5px;
+}

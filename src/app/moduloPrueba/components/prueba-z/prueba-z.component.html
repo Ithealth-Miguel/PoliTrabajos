@@ -1,0 +1,91 @@
+<div style="margin: 0 auto 0; width: 80%; height: 98vh; display: flex; align-items: center;">
+    <div style="width:20%;height: 610px; border-radius: 10px; border: 1px solid #ccc; box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.315); padding: 10px;">
+        <h1 style="text-align: center;">Datos del paciente</h1>
+        <form [formGroup]="myform" style="margin: 0 auto 0; width:80% ; display: flex; flex-wrap: wrap;">
+            <div style="width: 100%; display: flex; flex-direction: column;">
+                <label for=""><strong>Nombres</strong> </label>
+                <input type="text" name="" id="" formControlName="nombre">
+            </div>
+            <div style="width: 100%; display: flex; flex-direction: column;">
+                <label for=""><strong>Apellidos</strong> </label>
+                <input type="text" name="" id="" formControlName="apellido">
+            </div>
+        
+            <div style="width: 100%; display: flex; flex-direction: column;">
+                <label for=""><strong>Documento</strong> </label>
+                <input type="text" name="" id=""  formControlName="documento">
+            </div>
+            
+            <div style="width: 100%; display: flex; flex-direction: column;">
+                <label for=""><strong>Genero</strong> </label>
+                <input type="text" name="" id=""  formControlName="genero">
+            </div> 
+
+            <div style="width: 100%; display: flex; flex-direction: column;">
+                <label for=""><strong>Edad</strong> </label>
+                <input type="text" name="" id=""  formControlName="edad">
+            </div>
+
+            <div style="width: 100%; display: flex; flex-direction: column;">
+                <label for=""><strong>Email</strong> </label>
+                <input type="text" name="" id=""  formControlName="email">
+            </div>
+
+            <div style="width: 100%; display: flex; flex-direction: column;">
+                <label for=""><strong>Estado civil</strong></label>
+                <input type="text" name="" id=""  formControlName="estadoCivil">
+            </div>
+
+            <div style="width: 100%; display: flex; flex-direction: column;">
+                <label for=""><strong>Dirección</strong> </label>
+                <input type="text" name="" id=""  formControlName="direccion">
+            </div>
+
+            <div style="width: 100%; display: flex; flex-direction: column;">
+                <label for=""><strong>Cantidad de hijos</strong></label>
+                <input type="text" name="" id=""  formControlName="cantidadHijos">
+            </div>
+            <div style="width: 100%; display: flex; justify-content: center;margin-top: 10px;">
+                <button *ngIf="!editar" (click)="guardarDatos()" type="submit" style="background: rgb(47, 37, 192); border: 1px solid rgb(47, 37, 192); color: white; width: 100px; height: 30px;cursor: pointer;">
+                    <strong>GUARDAR</strong>
+                </button>
+                <button *ngIf="editar" (click)="EditarDatos()" type="submit" style="background: rgb(47, 37, 192); border: 1px solid rgb(47, 37, 192); color: white; width: 100px; height: 30px;cursor: pointer;">
+                    <strong>GUARDAR CAMBIOS</strong>
+                </button>
+            </div>
+        </form>
+    </div>
+    <div style="width:75%;height: 610px; margin-left:10px ; border-radius: 10px; border: 1px solid #ccc; box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.315); padding: 10px;">
+        <table style="width: 100%;">
+            <tr style="width: 100%;">
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Documento</th>
+                <th>Genero</th>
+                <th>Email</th>
+                <th>Estado Civil</th>
+                <th>Direccion</th>
+                <th>Cantidad de hijos</th>
+                <th> Editar</th>
+                <th> Eliminar</th>
+            </tr>
+            <tr *ngFor="let item of listaPacientes">
+                <td style="text-align: center;">{{item.id}}</td>
+                <td style="text-align: center;">{{item.nombre}}</td>
+                <td style="text-align: center;">{{item.apellido}}</td>
+                <td style="text-align: center;">{{item.documento}}</td>
+                <td style="text-align: center;">{{item.genero}}</td>
+                <td style="text-align: center;">{{item.email}}</td>
+                <td style="text-align: center;">{{item.estadoCivil}}</td>
+                <td style="text-align: center;">{{item.direccion}}</td>
+                <td style="text-align: center;">{{item.cantidadHijos}}</td>
+                <td style="text-align: center;">
+                    <button (click)="[capturarDatos(item),editar = !editar]" style="background: rgb(46, 182, 4); color: white; border: 1px solid rgb(46, 182, 4); cursor: pointer; border-radius: 5px;">Editar</button>
+                </td>
+                <td style="text-align: center;">
+                    <button (click)="EliminarDatos(item.id)" style="background: rgb(212, 10, 10); color: white; border: 1px solid red; cursor: pointer;border-radius: 5px;">Eliminar</button>
+            </tr>
+        </table>
+    </div>
+</div>
