@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { PacienteService } from '../../services/paciente/paciente.service';
+import { EmpleadoService } from '../../services/empleado/empleado.service';
 
 @Component({
   selector: 'app-prueba-z',
@@ -25,7 +25,7 @@ export class PruebaZComponent implements OnInit {
     cantidadHijos: ['',[Validators.required]],
     documento: ['',[Validators.required,Validators.minLength(2)]]
   })
-  constructor(private fb:FormBuilder,private pacienteService:PacienteService) { }
+  constructor(private fb:FormBuilder,private empleadoService:EmpleadoService) { }
 
   ngOnInit(): void {
     this.listarDatos();
@@ -36,7 +36,7 @@ export class PruebaZComponent implements OnInit {
       alert("Rellene todos los campos")
       return 
     }
-    this.pacienteService.PostDatosPaciente(this.myform.value)
+    this.empleadoService.PostDatosEmpleado(this.myform.value)
         .subscribe(resp =>{
           this.listarDatos();
           this.myform.reset();
@@ -48,7 +48,7 @@ export class PruebaZComponent implements OnInit {
   }
 
   listarDatos(){
-    this.pacienteService.GetDatosPaciente()
+    this.empleadoService.GetDatosEmpleado()
         .subscribe((resp:any) =>{
           console.log(resp);
           this.listaPacientes = resp;
@@ -91,7 +91,7 @@ export class PruebaZComponent implements OnInit {
       cantidadHijos: this.myform.get('cantidadHijos')?.value,
       documento: this.myform.get('documento')?.value
     }
-    this.pacienteService.PutDatosPaciente(data,this.id)
+    this.empleadoService.PutDatosEmpleado(data,this.id)
         .subscribe(resp =>{
           console.log(resp);
           this.editar = !this.editar;
@@ -104,7 +104,7 @@ export class PruebaZComponent implements OnInit {
         })
   }
   EliminarDatos(id:any){
-    this.pacienteService.DeleteDatosPaciente(id)
+    this.empleadoService.DeleteDatosEmpleado(id)
         .subscribe(resp =>{
           console.log(resp);
           alert("Se ha eliminado correctamente")
